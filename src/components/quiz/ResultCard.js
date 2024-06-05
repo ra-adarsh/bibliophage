@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 function ResultCard(props) {
-    const Percentage = (props.correct/props.questionNo)*100;
+    const Percentage = (props.correct / props.questionNo) * 100;
     return (
         <div className="d-flex flex-column align-items-center">
             <div className="card text-bg-light mb-3 w-50 mx-auto mt-5">

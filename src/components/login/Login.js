@@ -1,13 +1,12 @@
 import "./Login.css"
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
-import { doLoginInWithEmailAndPassword, doSignInWithGoogle } from "../../firebase/auth";
-import { AuthContext } from "../../contexts/authContext";
+import { doLoginInWithEmailAndPassword } from "../../firebase/auth";
 import { Navigate } from "react-router-dom";
 
 function Login() {
-    const value = useContext(AuthContext);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
     const [formData, setFormData] = useState(
         {
@@ -27,6 +26,7 @@ function Login() {
     }
 
     async function handleSubmit(event) {
+        setIsSubmitting(true);
         event.preventDefault();
         if (!isLoginInProgress) {
             setIsLoginInProgress(true);
@@ -37,19 +37,10 @@ function Login() {
                 setErrorMsg(JSON.stringify(error));
             }
         } else {
-            console.log("Please wait while we login you in!");
+            setErrorMsg("Please wait while we login you in!");
         }
+        setIsSubmitting(false);
     }
-
-    // async function googleLogin(event) {
-    //     event.preventDefault();
-    //     if (!isLoginInProgress) {
-    //         setIsLoginInProgress(true);
-    //         doSignInWithGoogle().catch(error => {
-    //             setIsLoginInProgress(false);
-    //         })
-    //     }
-    // }
 
     return(
         <div>
@@ -68,6 +59,7 @@ function Login() {
                     onChange={handleChange}
                     name="email"
                     value={formData.email}
+                    required
                     />
                 </div>
 
@@ -79,12 +71,14 @@ function Login() {
                     onChange={handleChange}
                     name="password"
                     value={formData.password}
+                    required
                     />
                 </div>
                 
                 <div className="col-6">
                     <button type="submit" 
                     className="btn btn-primary ms-3">
+                        {isSubmitting && <span className="spinner-border spinner-border-sm me-2"></span>}
                         Login
                     </button>
                 </div>

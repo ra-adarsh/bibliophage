@@ -13,15 +13,13 @@ export const fetchAllQuizzes = async () => {
             QuizId: quiz.data().QuizId,
             id: quiz.id
         }
-        // console.log(obj);
         quizDetails.push(obj);
     })
-    // console.log(quizDetails);
+
     return quizDetails;
 }
 
 export const fetchQuiz = async (id) => {
-    // console.log(id);
     const querySnapshot = await getDocs(collection(firestore, 'quizzes', `${id}`, 'question'));
     const questions = [];
     querySnapshot.forEach((doc) => {
@@ -30,7 +28,7 @@ export const fetchQuiz = async (id) => {
             questionText: "",
             options: []
         }
-        // console.log(doc.data().questionText);
+
         if (doc.data().questionText) {
             question.id = doc.id;
             question.questionText = doc.data().questionText;
@@ -42,7 +40,6 @@ export const fetchQuiz = async (id) => {
                         optionText: "",
                         isCorrect: false
                     }
-                    // console.log(option.data());
                     opt.optionText = option.data().optionText;
                     opt.isCorrect = option.data().isCorrect;
                     question.options.push(opt);
@@ -70,10 +67,8 @@ export const fetchMyQuizzes = async (QuizIds) => {
     console.log("Inside fetchMyQuizzes: ", QuizIds);
     const quizDetails = [];
     for (let i = 0; i < QuizIds.length; i++) {
-        // console.log("inside loop", QuizIds[i]);
         const ref = doc(firestore, 'quizzes', `${QuizIds[i]}`);
         const quiz = await getDoc(ref);
-        // console.log("Fetching the data: ", quiz.data());
         if (!(quiz.data())) continue;
         const obj = {
             QuizName: quiz.data().QuizName,
@@ -82,7 +77,6 @@ export const fetchMyQuizzes = async (QuizIds) => {
             QuizId: quiz.data().QuizId,
             id: quiz.id
         }
-        // console.log("Quiz object to return: ", obj);
         quizDetails.push(obj);
     }
     return quizDetails;

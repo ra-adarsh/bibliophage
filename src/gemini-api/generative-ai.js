@@ -15,13 +15,16 @@ export async function generateQuestions(textInput) {
     in double quotes, and return only the array in square brackets and no other text.`
     const result = await model.generateContent(prompt);
     const response = await result.response;
+
     let text = response.text();
     if (text.startsWith("```")) {
         text = text.split("```")[1];
     }
+
     if (text.startsWith("javascript")) {
         text = text.split("javascript")[1];
     }
+    
     const questionArray = JSON.parse(text);
 
     return questionArray;

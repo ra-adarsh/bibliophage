@@ -1,5 +1,5 @@
 import { firestore } from "./firebase";
-import { doc, query, getDoc, addDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, query, addDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { collection, getDocs, where } from "firebase/firestore";
 
 export const addUser = async (user) => {

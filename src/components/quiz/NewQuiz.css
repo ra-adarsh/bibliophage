@@ -10,3 +10,7 @@
 .input-style:active {
     box-shadow: 2px 2px 15px #8707ff inset;
 }
+
+.width-form {
+    width: 65%;
+}

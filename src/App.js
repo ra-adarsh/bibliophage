@@ -6,9 +6,7 @@ import Signin from './components/login/Signin';
 import Login from './components/login/Login';
 import QuizPage from './components/quiz/QuizPage';
 import Home from './components/home/Home';
-import About from './components/home/About';
 import { Navigate, Route, Routes } from "react-router-dom";
-import Quizzes from './components/quiz/Quizzes';
 import { AuthContext } from './contexts/authContext';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/firebase';
@@ -45,7 +43,6 @@ function App() {
       <div className='app-wrapper'>
         <Routes>
           <Route exact path='/' element={<><NavBar/><Home /></>}/>
-          <Route exact path='/about' element={<><NavBar/><About /></>}/>
           <Route exact path='/users' element={<NavBar />}>
             <Route path='login' element={<Login />}/>
             <Route path='signin' element={<Signin />}/>
@@ -54,8 +51,6 @@ function App() {
             <Route path='quiz' element={localStorage.getItem("isAuthenticated") ? <QuizPage /> : <Navigate to="/users/login" />}/>
             <Route path='myquizzes' element={localStorage.getItem("isAuthenticated") ? <MyQuizzes /> : <Navigate to="/users/login" />}/>
             <Route path='newquiz' element={localStorage.getItem("isAuthenticated") ? <NewQuiz /> : <Navigate to="/users/login" />}/>
-            {/* <Route path='quiz' element={<QuizPage />} />
-            <Route path='myquizzes' element={<MyQuizzes />} /> */}
           </Route>
         </Routes>
       </div>

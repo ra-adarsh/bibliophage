@@ -3,7 +3,7 @@ import { useState } from "react";
 function Message(props) {
     return (
         <div className={`alert alert-${props.style} mt-3 w-50 m-auto text-center`} role="alert">
-        {props.style === "success" ? "Correct!" : `Incorrect! Answer is "${props.correctAnswer}"`}
+            {props.style === "success" ? "Correct!" : `Incorrect! Answer is "${props.correctAnswer}"`}
         </div>
     )
 }
@@ -43,7 +43,7 @@ function QuizCard(props) {
                     {options}
                 </div>
             </div>
-            {answer && <Message style={style} correctAnswer={correctAnswer}/>}
+            {answer && <Message style={style} correctAnswer={correctAnswer} />}
         </div>
 
     )

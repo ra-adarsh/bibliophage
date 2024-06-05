@@ -1,7 +1,7 @@
 .signin-card {
     position: relative;
-    width: 610px;
-    height: 350px;
+    width: 320px;
+    height: 500px;
     background-color: #000;
     display: flex;
     flex-direction: column;
@@ -20,13 +20,25 @@
     inset: 0;
     left: -5px;
     margin: auto;
-    width: 620px;
-    height: 360px;
+    width: 330px;
+    height: 510px;
     border-radius: 10px;
-    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
     z-index: -10;
     pointer-events: none;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media screen and (min-width: 480px) {
+    .signin-card {
+        width: 610px;
+        height: 350px;
+    }
+
+    .signin-card::before {
+        width: 620px;
+        height: 360px;
+    }
 }
 
 .signin-card::after {
@@ -34,7 +46,7 @@
     z-index: -1;
     position: absolute;
     inset: 0;
-    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
     filter: blur(20px);
 }
 
@@ -56,5 +68,3 @@
 .signin-card:hover::after {
     filter: blur(30px);
 }
-  
-  

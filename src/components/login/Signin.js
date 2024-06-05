@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import { addUser } from "../../firebase/registerUser";
 
 function Signin() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMsg, setErrorMsg] = useState(null);
     const [formData, setFormData] = useState(
         {
@@ -28,6 +29,7 @@ function Signin() {
     }
 
     async function handleSubmit(event) {
+        setIsSubmitting(true);
         event.preventDefault();
         if (!isSignInProgress) {
             setIsSignInProgress(true);
@@ -35,68 +37,76 @@ function Signin() {
                 await doCreateUserWithEmailAndPassword(formData.email, formData.password);
                 await updateProfile(auth.currentUser, { displayName: `${formData.firstName} ${formData.lastName}` });
                 await addUser(formData);
-                
+
             } catch (error) {
                 setIsSignInProgress(false);
                 setErrorMsg(error.message.split("Firebase: ")[1])
             }
         } else {
-            console.log("Please wait while we create your account!");
+            setErrorMsg("Please wait while we create your account!");
         }
+        setIsSubmitting(false);
     }
 
-    return(
+    return (
         <div>
             {auth.currentUser && <Navigate to='/' />}
             <h2 className="mt-5 text-center">Create a new Account to get started!</h2>
             {errorMsg && <div className="alert alert-danger w-50 mx-auto mt-3" role="alert">
                 {errorMsg}
             </div>}
-            <div className="signin-card">
+            <div className="signin-card mt-5">
                 <form className="row g-4" onSubmit={handleSubmit}>
                     <div className="col-md-6">
                         <label forhtml="firstName" className="form-label">First Name</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="firstName"
-                        onChange={handleChange}
-                        name="firstName"
-                        value={formData.firstName}/>
+                        <input type="text"
+                            className="form-control"
+                            id="firstName"
+                            onChange={handleChange}
+                            name="firstName"
+                            value={formData.firstName} 
+                            required/>
                     </div>
                     <div className="col-md-6">
                         <label forhtml="lastName" className="form-label">Last Name</label>
-                        <input type="text" 
-                        className="form-control" 
-                        id="lastName"
-                        onChange={handleChange}
-                        name="lastName"
-                        value={formData.lastName}/>
-                    </div> 
+                        <input type="text"
+                            className="form-control"
+                            id="lastName"
+                            onChange={handleChange}
+                            name="lastName"
+                            value={formData.lastName} 
+                            required/>
+                    </div>
                     <div>
                         <label forhtml="email" className="form-label">Email</label>
-                        <input type="email" 
-                        className="form-control" 
-                        id="email"
-                        onChange={handleChange}
-                        name="email"
-                        value={formData.email}/>
+                        <input type="email"
+                            className="form-control"
+                            id="email"
+                            onChange={handleChange}
+                            name="email"
+                            value={formData.email} 
+                            required/>
                     </div>
                     <div>
                         <label forhtml="password" className="form-label">Password</label>
-                        <input type="password" 
-                        className="form-control" 
-                        id="password"
-                        onChange={handleChange}
-                        name="password"
-                        value={formData.password}/>
+                        <input type="password"
+                            className="form-control"
+                            id="password"
+                            onChange={handleChange}
+                            name="password"
+                            value={formData.password} 
+                            required/>
                     </div>
-                    
+
                     <div className="col-6">
-                        <button type="submit" 
-                        className="btn btn-primary">Sign in</button>
+                        <button type="submit"
+                        className="btn btn-primary">
+                            {isSubmitting && <span className="spinner-border spinner-border-sm me-2"></span>}
+                            Sign in
+                        </button>
                     </div>
                     <div className="col-6">
-                    <p className="text-secondary">Already have an account? <Link to="/users/login">Login here!</Link></p>
+                        <p className="text-secondary">Already have an account? <Link to="/users/login">Login here!</Link></p>
                     </div>
                 </form>
             </div>
