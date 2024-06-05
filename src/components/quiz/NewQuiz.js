@@ -48,7 +48,7 @@ function NewQuiz() {
     return (
         <div>
             {generated && <Navigate to="/users/myquizzes" />}
-            <div className="mb-3 w-50 mx-auto mt-5">
+            <div className="mb-3 width-form mx-auto mt-5">
                 <h1 className="text-center">Now Create your own quiz by uploading a file here!</h1>
             </div>
             {errorMsg && <div className="alert alert-danger w-25 mx-auto" role="alert">
@@ -84,7 +84,7 @@ function NewQuiz() {
                         Make a Quiz!
                     </button>
                 </form>
-                <p className="mt-3 px-4 mx-auto text-center">
+                <p className="my-3 px-4 mx-auto text-center">
                     Generating the quiz may take a while. Once, your quiz
                     is generated you will be redirected to My Quizzes page,
                     hit refresh to find your Quiz.

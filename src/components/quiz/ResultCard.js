@@ -4,7 +4,7 @@ function ResultCard(props) {
     const Percentage = (props.correct / props.questionNo) * 100;
     return (
         <div className="d-flex flex-column align-items-center">
-            <div className="card text-bg-light mb-3 w-50 mx-auto mt-5">
+            <div className="card text-bg-light mb-3 w-75 mx-auto mt-5">
                 <div className="card-header text-center">Result</div>
                 <div className="card-body text-center">
                     <h5 className="card-title">Correct: {props.correct}</h5>
