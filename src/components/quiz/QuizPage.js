@@ -51,11 +51,11 @@ function QuizPage() {
     }
 
     return (
-        <div className="wrapper">
+        <div className="wrapper mx-auto">
             {!startQuiz &&
-                <div className='d-flex flex-column align-center w-50mx-auto mt-5'>
+                <div className='d-flex flex-column align-center mx-auto mt-5'>
                     <h1 className='text-center'>Are you ready for the quiz?</h1>
-                    <button className='btn btn-primary m-5 w-25 mx-auto' onClick={handleStart}>
+                    <button className='btn btn-primary m-5 w-50 mx-auto' onClick={handleStart}>
                         {loadingQuiz && <span className="spinner-border spinner-border-sm me-2"></span>}
                         Start the Quiz
                     </button>

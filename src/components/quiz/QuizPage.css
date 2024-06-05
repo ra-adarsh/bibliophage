@@ -1,6 +1,15 @@
 .wrapper {
-  /* width: 100vw; */
+  width: 75%;
   height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 480px) {
+  .wrapper {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+  }
 }

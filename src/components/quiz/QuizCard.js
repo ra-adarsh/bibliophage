@@ -34,7 +34,7 @@ function QuizCard(props) {
 
     return (
         <div className="d-flex flex-column justify-content-around w-75 m-auto">
-            <div className="card w-50 mx-auto mt-4">
+            <div className="card w-100 mx-auto mt-4">
                 <div className="card-header text-center">
                     Question ID: {props.questionObj.id}
                 </div>
