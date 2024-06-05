@@ -16,7 +16,6 @@ function QuizPage() {
         fetchQuiz(id).then(arr => {
             setQuestions(arr);
         });
-        console.log("From Quiz page: ", questions);
     }, []);
 
     const [currentQuestionNo, setCurrentQuestionNo] = useState(0);
@@ -73,8 +72,8 @@ function QuizPage() {
                     />}
                     {!isComplete &&
                         <div className="d-flex flex-row justify-content-around my-4">
-                            <button type="button" className="btn btn-outline-light" onClick={handlePrevious}>Previous</button>
-                            <button type="button" className="btn btn-outline-light" onClick={handleNext}>{isLastQuestion ? "Submit" : "Next"}</button>
+                            <button type="button" className="btn btn-outline-light mb-3" onClick={handlePrevious}>Previous</button>
+                            <button type="button" className="btn btn-outline-light mb-3" onClick={handleNext}>{isLastQuestion ? "Submit" : "Next"}</button>
                         </div>}
                 </div>
             }

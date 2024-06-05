@@ -45,7 +45,6 @@ function QuizCard(props) {
             </div>
             {answer && <Message style={style} correctAnswer={correctAnswer} />}
         </div>
-
     )
 }
 
