@@ -15,6 +15,9 @@ function NewQuiz() {
     const [generated, setGenerated] = useState(false);
 
     function handleSubmit(event) {
+        if (isSubmitting) {
+            setErrorMsg("Your Quiz is being generated please wait...")
+        } else {
         setIsSubmitting(true);
         event.preventDefault();
         const formData = new FormData();
@@ -39,6 +42,7 @@ function NewQuiz() {
                 setErrorMsg(JSON.stringify(err.message))
             }
             );
+        }
     }
 
     function handleChange(event) {
@@ -51,7 +55,7 @@ function NewQuiz() {
             <div className="mb-3 width-form mx-auto mt-5">
                 <h1 className="text-center">Now Create your own quiz by uploading a file here!</h1>
             </div>
-            {errorMsg && <div className="alert alert-danger w-25 mx-auto" role="alert">
+            {errorMsg && <div className="alert alert-danger w-50 mx-auto text-center" role="alert">
                 {errorMsg}
             </div>}
             <div className="mb-3 width-form mx-auto mt-5">
@@ -79,7 +83,7 @@ function NewQuiz() {
                             placeholder="Write a small description..." 
                             required/>
                     </div>
-                    <button className="btn btn-primary mt-2">
+                    <button type="button" className="btn btn-primary mt-2" onClick={(event) => handleSubmit(event)}>
                         {isSubmitting && <span className="spinner-border spinner-border-sm me-2"></span>}
                         Make a Quiz!
                     </button>
